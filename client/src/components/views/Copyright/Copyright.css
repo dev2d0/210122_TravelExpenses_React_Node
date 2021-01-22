@@ -1,0 +1,11 @@
+.CopyrightStyle {
+  /* position: absolute; or 지우기 */
+
+    background-color: #101018f8;
+    color: #fff;
+    font-size: 1em;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    padding: 12px 0;
+  }
