@@ -35,7 +35,7 @@ function FileUpload(props) {
         const currentIndex = Images.indexOf(image);
         let newImages = [...Images]//새로운 변수에 Imanges를 담아줌
         newImages.splice(currentIndex, 1)//클릭한 사진인 currentIndex부터 1개를 지워주겠다는 뜻
-        setImages(newImages)
+        setImages(newImages)//새 Imanges변수를 state에 저장
         props.refreshFunction(newImages)
 
 
