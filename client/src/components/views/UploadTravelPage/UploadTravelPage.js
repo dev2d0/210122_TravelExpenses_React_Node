@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Typography, Button, Form, Input } from 'antd';
-//import FileUpload from '../../utils/FileUpload';
+import FileUpload from '../../utils/FileUpload';
 import Axios from 'axios';
 const { TextArea } = Input;
 
@@ -62,13 +62,13 @@ function UploadTravelPage(props) {
             continents: Continent
         }
 
-        Axios.post('/api/product', body)
+        Axios.post('/api/travel', body)
             .then(response => {
                 if (response.data.success) {
-                    alert('상품 업로드에 성공 했습니다.')
+                    alert('여행지 업로드에 성공했습니다..')
                     props.history.push('/')
                 } else {
-                    alert('상품 업로드에 실패 했습니다.')
+                    alert('여행지 업로드에 실패 했습니다.')
                 }
             })
     }
@@ -82,15 +82,15 @@ function UploadTravelPage(props) {
 
             <Form onSubmit={submitHandler}>
                 {/* DropZone */}
-
+                <FileUpload/>
 
                 <br />
                 <br />
-                <label>이름</label>
+                <label>여행지</label>
                 <Input onChange={titleChangeHandler} value={Title} />
                 <br />
                 <br />
-                <label>설명</label>
+                <label>소개</label>
                 <TextArea onChange={descriptionChangeHandler} value={Description} />
                 <br />
                 <br />
