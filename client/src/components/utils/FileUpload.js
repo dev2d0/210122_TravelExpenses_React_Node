@@ -21,9 +21,7 @@ function FileUpload(props) {
                 if (response.data.success) {
                     console.log(response.data)
                     setImages([...Images, response.data.filePath])//여러개 들어오면 배열에 여러개 저장 가능
-                    //props.refreshFunction([...Images, response.data.filePath])
-
-
+                    props.refreshFunction([...Images, response.data.filePath])
                 } else {
                     alert('파일을 저장하는데 실패했습니다.')
                 }

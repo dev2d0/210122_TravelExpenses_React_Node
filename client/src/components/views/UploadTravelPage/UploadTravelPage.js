@@ -39,6 +39,7 @@ function UploadTravelPage(props) {
     }
 
     const updateImages = (newImages) => {
+        //FileUpload의 state에 저장된 이미지 정보들을 받아오기 위함.
         setImages(newImages)
     }
 
@@ -82,7 +83,7 @@ function UploadTravelPage(props) {
 
             <Form onSubmit={submitHandler}>
                 {/* DropZone */}
-                <FileUpload/>
+                <FileUpload refreshFunction={updateImages}/>
 
                 <br />
                 <br />
