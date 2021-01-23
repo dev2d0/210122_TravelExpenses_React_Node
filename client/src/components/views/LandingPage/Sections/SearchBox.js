@@ -3,9 +3,9 @@ import { Input } from 'antd';
 const { Search } = Input;
 
 function SearchBox(props) {
-
-    const [SearchTerm, setSearchTerm] = useState("")
     
+    const [SearchTerm, setSearchTerm] = useState("")
+
     const searchHandler = (event) => {
         setSearchTerm(event.currentTarget.value)
         props.refreshFunction(event.currentTarget.value)
@@ -15,12 +15,13 @@ function SearchBox(props) {
         <div>
             <Search
                 placeholder="input search text"
-                onChange={{ searchHandler }}
+                onChange={searchHandler}
                 style={{ width: 200 }}
-                value = { SearchTerm }
+                value={SearchTerm}
             />
         </div>
     )
+
 }
 
 export default SearchBox
