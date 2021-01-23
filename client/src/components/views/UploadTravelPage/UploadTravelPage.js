@@ -45,17 +45,13 @@ function UploadTravelPage(props) {
 
     const submitHandler = (event) => {
         event.preventDefault();
-
         if (!Title || !Description || !Price || !Continent || Images.length === 0) {
             return alert(" 모든 값을 넣어주셔야 합니다.")
-        }
+        }//서버에 채운 값들을 request로 보낸다.
 
-
-        //서버에 채운 값들을 request로 보낸다.
-
-        const body = {
+        const body = {//DBd에 저장할 정보들
             //로그인 된 사람의 ID 
-            writer: props.user.userData._id,
+            writer: props.user.userData._id,//hoc/auth.js의 user정보를 props로 받아옴.
             title: Title,
             description: Description,
             price: Price,
@@ -63,11 +59,12 @@ function UploadTravelPage(props) {
             continents: Continent
         }
 
+        //정보들을 백엔드로 보내줌.
         Axios.post('/api/travel', body)
             .then(response => {
                 if (response.data.success) {
                     alert('여행지 업로드에 성공했습니다..')
-                    props.history.push('/')
+                    props.history.push('/')//업로드가 완료 되면 landingpage로 자동적으로 이동시켜줌
                 } else {
                     alert('여행지 업로드에 실패 했습니다.')
                 }
@@ -79,6 +76,7 @@ function UploadTravelPage(props) {
         <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                 <h2> 여행지 경비 </h2>
+                <h>+버튼을 눌러</h>
             </div>
 
             <Form onSubmit={submitHandler}>

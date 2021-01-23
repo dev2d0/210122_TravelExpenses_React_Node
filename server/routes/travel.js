@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const { Travel } = require('../models/Travel')
 
 //=================================
 //             Travel
@@ -24,8 +25,34 @@ router.post('/image', (req, res) => {
         }
         return res.json({ success: true, filePath: res.req.file.path, fileName: res.req.file.filename })
     })
-
 })
+
+router.post('/', (req, res) => {
+    //받아온 정보들을 DB에 저장해줌.
+    const travel = new Travel(req.body)
+    travel.save((err) => {//save()를 해주면 new Travel안에 넣어준 req.body정보들이 Travel DB에 저장됨.
+        if (err) return res.status(400).json({ success: false, err })
+        return res.status(200).json({ success: true })
+    })
+})
+
+router.post('/travels', (req, res) => {
+    let limit = req.body.limit ? parseInt(req.body.limit) : 20;
+    let skip = req.body.skip ? parseInt(req.body.skip) : 0;
+    //travels collection에 들어 있는 모든 여행 정보를 가져오기
+    Travel.find()//괄호가 빈칸이면 모든 정보를 가져오는 것
+        .populate("writer")//populate를 이용해 writer에 관한 모든 정보를 가져올 수 있음.
+        .skip(skip)
+        .limit(limit)
+        .exec((err, travelInfo) => {//정상 동작 하면 travelInfo에 정보가 들어감
+            if (err) return res.status(400).json({ success: false, err })
+            return res.status(200).json({ 
+                success: true, travelInfo,
+                postSize: travelInfo.length//배열 길이가 총 게시글의 개수
+            })
+        })
+})
+
 
 module.exports = router;
 
