@@ -37,10 +37,20 @@ router.post('/', (req, res) => {
 })
 
 router.post('/travels', (req, res) => {
+        //travels collection에 들어 있는 모든 여행 정보를 가져오기
     let limit = req.body.limit ? parseInt(req.body.limit) : 20;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
-    //travels collection에 들어 있는 모든 여행 정보를 가져오기
-    Travel.find()//괄호가 빈칸이면 모든 정보를 가져오는 것
+
+    let findArgs = {};
+    
+    for(let key in req.body.filters) {
+        if(req.body.filters[key].length > 0){//key는 continets 아니면 prices
+            findArgs[key] = req.body.filters[key];
+        }
+    }//Filter에 의해 호출 되었을 때 정보들을 저장함.
+
+
+    Travel.find(findArgs)//괄호가 빈칸이면 모든 정보를 가져오는 것
         .populate("writer")//populate를 이용해 writer에 관한 모든 정보를 가져올 수 있음.
         .skip(skip)
         .limit(limit)

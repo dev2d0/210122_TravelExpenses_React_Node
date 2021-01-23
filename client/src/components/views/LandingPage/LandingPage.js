@@ -4,14 +4,18 @@ import Meta from 'antd/lib/card/Meta';
 import axios from 'axios';
 import ImageSlider from '../../utils/ImageSlider';
 import CheckBox from './Sections/CheckBox'
-import { continents } from './Sections/Datas'
+import RadioBox from './Sections/RadioBox'
+import { continents, price } from './Sections/Datas'
 
 function LandingPage() {
     const [Travels, setTravels] = useState([])
     const [Skip, setSkip] = useState(0)
     const [Limit, setLimit] = useState(8)
     const [PostSize, setPostSize] = useState(0)
-
+    const [Filters, setFilters] = useState({
+        continents: [],
+        price: []
+    })
     useEffect(() => {
         let body = {
             skip: Skip,
@@ -68,9 +72,23 @@ function LandingPage() {
                 </Card>
             </Col>
         )
-
     })
 
+    const showFilterdResults = (filters) => {
+        let body = {
+            skip: 0,//처음부터 다시 가져와야함
+            limit: Limit,
+            filters: filters
+        }
+        getTravels(body)
+        setSkip(0)
+    }
+
+    const handleFilters = (filters, category) => {
+        const newfilters = { ...Filters }
+        newfilters[category] = filters
+        showFilterdResults(newfilters)
+    }
 
     return (
         <div style={{ width: '75%', margin: '3rem auto' }}>
@@ -78,9 +96,18 @@ function LandingPage() {
                 <h2>Let's Go Travel <Icon type="rocket" /> </h2>
             </div>
             {/* Filter */}
+            <Row gutter={[16, 16]}>
+                <Col lg={12} xs={24}>
+                    {/* CheckBox */}
+                    <CheckBox list={continents} handleFilters={filters => handleFilters(filters, "continents")} />
+                </Col>
+                <Col lg={12} xs={24}>
+                    {/* RadioBox */}
+                    <RadioBox list={price} handleFilters={filters => handleFilters(filters, "price")}/>
+                </Col>
 
-            {/* CheckBox */}
-            <CheckBox list={continents}/>
+            </Row>
+
 
             {/* Search */}
 
