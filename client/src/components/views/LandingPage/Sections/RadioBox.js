@@ -20,8 +20,8 @@ const handleChange = (event) => {
 
     return (
         <div>
-            <Collapse defaultActiveKey={['1']}>
-                <Panel header="This is panel header with arrow icon" key="1">
+            <Collapse defaultActiveKey={['0']}>
+                <Panel header="Price" key="1">
                     {/* Value가 하나만 들어갈 수 있게 Group을 이용해 처리해준다. */}
                     <Radio.Group onChange={handleChange} value={Value}>
                         {renderRadioBox()}

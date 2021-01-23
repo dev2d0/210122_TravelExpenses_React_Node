@@ -34,9 +34,9 @@ function LandingPage() {
             .then(response => {
                 if (response.data.success) {
                     if (body.loadMore) {//더보기 버튼을 눌렀을 때는 이전 정보도 저장되어야 하므로.
-                        setTravels([...Travels, ...response.data.travelInfo])
+                        setTravels([...Travels, ...response.data.travelInfo])//원래 정보 + 다음 정보
                     } else {
-                        setTravels(response.data.travelInfo)
+                        setTravels(response.data.travelInfo)//새로운 정보만 
                     }
                     setPostSize(response.data.postSize)
                 } else {
@@ -82,10 +82,8 @@ function LandingPage() {
             limit: Limit,
             filters: filters
         }
-
-        setSkip(0)
-        setSearchTerm(newSearchTerm)
         getTravels(body)
+        setSkip(0)
     }
 
     const handlePrice = (value) => {//Data에서 가격 정보를 받아오기 위함.
@@ -114,16 +112,18 @@ function LandingPage() {
     }
 
     const updateSearchTerm = (newSearchTerm) => {
+        //SearchBox의 value를 이용해 값을 state에 저장하고 api를 호출함.
         setSearchTerm(newSearchTerm)
 
         let body = {
-            skip:0,
+            skip: 0,
             limit: Limit,
-            filter: filter,
+            filters: Filters,
             searchTerm: newSearchTerm
         }
         setSkip(0)
-
+        setSearchTerm(newSearchTerm)
+        getTravels(body)
 
     }
 
@@ -147,8 +147,8 @@ function LandingPage() {
 
 
             {/* Search */}
-            <div style = {{ display: 'flex', justifyContent: 'flex-end', margin: '1rem'}}>
-                <SearchBox refreshFunction={updateSearchTerm}/>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem' }}>
+                <SearchBox refreshFunction={updateSearchTerm} />
             </div>
             {/* Cards */}
             <Row gutter={16, 16}>
