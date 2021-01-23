@@ -3,6 +3,8 @@ import { Icon, Card, Col, Row, Carousel } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import axios from 'axios';
 import ImageSlider from '../../utils/ImageSlider';
+import CheckBox from './Sections/CheckBox'
+import { continents } from './Sections/Datas'
 
 function LandingPage() {
     const [Travels, setTravels] = useState([])
@@ -76,6 +78,9 @@ function LandingPage() {
                 <h2>Let's Go Travel <Icon type="rocket" /> </h2>
             </div>
             {/* Filter */}
+
+            {/* CheckBox */}
+            <CheckBox />
 
             {/* Search */}
 
