@@ -33,11 +33,11 @@ const travelSchema = mongoose.Schema({
     }
 }, { timestamps: true })
 
-travelSchema.index({
+travelSchema.index({//검색을 할때 가중치를 설정해줌.
     title: 'text',
     description: 'text'
 }, {
-    weights: {
+    weights: {//title이 description에 비해 5배 더 중요하게 여긴다는 의미.
         title: 5,
         description: 1
     }

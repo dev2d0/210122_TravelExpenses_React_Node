@@ -37,38 +37,53 @@ router.post('/', (req, res) => {
 })
 
 router.post('/travels', (req, res) => {
-        //travels collection에 들어 있는 모든 여행 정보를 가져오기
+    //travels collection에 들어 있는 모든 여행 정보를 가져오기
     let limit = req.body.limit ? parseInt(req.body.limit) : 20;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
+    let term = req.body.searchTerm//Search된 정보
 
     let findArgs = {};
-    
-    for(let key in req.body.filters) {
-        if(req.body.filters[key].length > 0){//key는 continets 아니면 prices
 
-            if(key === "price"){//price에 관한 정보를 요청할 경우
+    for (let key in req.body.filters) {
+        if (req.body.filters[key].length > 0) {//key는 continets 아니면 prices
+
+            if (key === "price") {//price에 관한 정보를 요청할 경우
                 findArgs[key] = {
                     $gte: req.body.filters[key][0],//gte = grater than equal : MongoDB Method, 이것보다 크거니 깉고
                     $lte: req.body.filters[key][1]//lte = less than equal : MongoDB Method, 이것보다 작거나 같고 
                 }
-            }else{//continents에 관한 정보를 요청할 경우
+            } else {//continents에 관한 정보를 요청할 경우
                 findArgs[key] = req.body.filters[key];
             }
         }
     }//Filter에 의해 호출 되었을 때 정보들을 저장함.
 
-
-    Travel.find(findArgs)//괄호가 빈칸이면 모든 정보를 가져오는 것
-        .populate("writer")//populate를 이용해 writer에 관한 모든 정보를 가져올 수 있음.
-        .skip(skip)
-        .limit(limit)
-        .exec((err, travelInfo) => {//정상 동작 하면 travelInfo에 정보가 들어감
-            if (err) return res.status(400).json({ success: false, err })
-            return res.status(200).json({ 
-                success: true, travelInfo,
-                postSize: travelInfo.length//배열 길이가 총 게시글의 개수
+    if (term) {//Search를 통해 들어온 정보를 찾기 위해 처리해줌.
+        Travel.find(findArgs)
+            .find({ $text: { $search: term } })//MongoDB의 find method 이용
+            .populate("writer")
+            .skip(skip)
+            .limit(limit)
+            .exec((err, travelInfo) => {
+                if (err) return res.status(400).json({ success: false, err })
+                return res.status(200).json({
+                    success: true, travelInfo,
+                    postSize: travelInfo.length
+                })
             })
-        })
+    } else {
+        Travel.find(findArgs)//괄호가 빈칸이면 모든 정보를 가져오는 것
+            .populate("writer")//populate를 이용해 writer에 관한 모든 정보를 가져올 수 있음.
+            .skip(skip)
+            .limit(limit)
+            .exec((err, travelInfo) => {//정상 동작 하면 travelInfo에 정보가 들어감
+                if (err) return res.status(400).json({ success: false, err })
+                return res.status(200).json({
+                    success: true, travelInfo,
+                    postSize: travelInfo.length//배열 길이가 총 게시글의 개수
+                })
+            })
+    }
 })
 
 

@@ -82,8 +82,10 @@ function LandingPage() {
             limit: Limit,
             filters: filters
         }
-        getTravels(body)
+
         setSkip(0)
+        setSearchTerm(newSearchTerm)
+        getTravels(body)
     }
 
     const handlePrice = (value) => {//Data에서 가격 정보를 받아오기 위함.
@@ -113,6 +115,16 @@ function LandingPage() {
 
     const updateSearchTerm = (newSearchTerm) => {
         setSearchTerm(newSearchTerm)
+
+        let body = {
+            skip:0,
+            limit: Limit,
+            filter: filter,
+            searchTerm: newSearchTerm
+        }
+        setSkip(0)
+
+
     }
 
     return (
