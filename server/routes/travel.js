@@ -45,7 +45,15 @@ router.post('/travels', (req, res) => {
     
     for(let key in req.body.filters) {
         if(req.body.filters[key].length > 0){//key는 continets 아니면 prices
-            findArgs[key] = req.body.filters[key];
+
+            if(key === "price"){//price에 관한 정보를 요청할 경우
+                findArgs[key] = {
+                    $gte: req.body.filters[key][0],//gte = grater than equal : MongoDB Method, 이것보다 크거니 깉고
+                    $lte: req.body.filters[key][1]//lte = less than equal : MongoDB Method, 이것보다 작거나 같고 
+                }
+            }else{//continents에 관한 정보를 요청할 경우
+                findArgs[key] = req.body.filters[key];
+            }
         }
     }//Filter에 의해 호출 되었을 때 정보들을 저장함.
 

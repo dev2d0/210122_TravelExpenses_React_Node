@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { createFactory, useEffect, useState } from 'react'
 import { Icon, Card, Col, Row, Carousel } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import axios from 'axios';
 import ImageSlider from '../../utils/ImageSlider';
 import CheckBox from './Sections/CheckBox'
 import RadioBox from './Sections/RadioBox'
+import SearchBox from './Sections/SearchBox'
 import { continents, price } from './Sections/Datas'
 
 function LandingPage() {
@@ -12,6 +13,7 @@ function LandingPage() {
     const [Skip, setSkip] = useState(0)
     const [Limit, setLimit] = useState(8)
     const [PostSize, setPostSize] = useState(0)
+    const [SearchTerm, setSearchTerm] = useState("")
     const [Filters, setFilters] = useState({
         continents: [],
         price: []
@@ -26,7 +28,7 @@ function LandingPage() {
     }, [])
 
     const getTravels = (body) => {
-        //useEffect와 loadMoreHandler에서 데이터를 가져올 때 
+        //데이터를 불러올 때마다 반복해서 요청되는 함수, body에 필요한 정보를 함께 보내줌.
         //필요한 api를 요청할 때 중복 되므로 따로 만듬
         axios.post('/api/travel/travels', body)
             .then(response => {
@@ -52,7 +54,7 @@ function LandingPage() {
             skip: skip,
             limit: Limit,
             loadMore: true,//더보기 버튼이라는 정보
-            //filters: Filters
+            filters: Filters
         }
 
         getTravels(body)
@@ -67,14 +69,14 @@ function LandingPage() {
                 >
                     <Meta
                         title={travel.title}
-                        description={`$${travel.price}`}
+                        description={`${travel.price}원`}
                     />
                 </Card>
             </Col>
         )
     })
 
-    const showFilterdResults = (filters) => {
+    const showFilterdResults = (filters) => {//
         let body = {
             skip: 0,//처음부터 다시 가져와야함
             limit: Limit,
@@ -84,10 +86,33 @@ function LandingPage() {
         setSkip(0)
     }
 
+    const handlePrice = (value) => {//Data에서 가격 정보를 받아오기 위함.
+        const data = price;
+        let array = [];
+
+        for (let key in data) {
+            if (data[key]._id === parseInt(value, 10)) {
+                array = data[key].array;
+            }
+        }
+        return array;
+    }
+
     const handleFilters = (filters, category) => {
-        const newfilters = { ...Filters }
-        newfilters[category] = filters
-        showFilterdResults(newfilters)
+        //filters에는 _id가 들어가고 category에는 continents나 price가 들어간다.
+        const newFilters = { ...Filters }//Filters State의 정보를 담는다.
+        newFilters[category] = filters//새로 들어온 filters 정보를 추가한다.
+
+        if (category === 'price') {
+            let priceValues = handlePrice(filters)
+            newFilters[category] = priceValues//price의 [0,200,000]이런 형식의 데이터가 들어옴.
+        }
+        showFilterdResults(newFilters)//기존 Filters 정보와 새로운 Filters정보를 합친 newFilters정보로 api요청.
+        setFilters(newFilters)//continents정보와 price정보를 둘 다 가지고 있어야 하므로.
+    }
+
+    const updateSearchTerm = (newSearchTerm) => {
+        setSearchTerm(newSearchTerm)
     }
 
     return (
@@ -103,14 +128,16 @@ function LandingPage() {
                 </Col>
                 <Col lg={12} xs={24}>
                     {/* RadioBox */}
-                    <RadioBox list={price} handleFilters={filters => handleFilters(filters, "price")}/>
+                    <RadioBox list={price} handleFilters={filters => handleFilters(filters, "price")} />
                 </Col>
 
             </Row>
 
 
             {/* Search */}
-
+            <div style = {{ display: 'flex', justifyContent: 'flex-end', margin: '1rem'}}>
+                <SearchBox refreshFunction={updateSearchTerm}/>
+            </div>
             {/* Cards */}
             <Row gutter={16, 16}>
                 {renderCards}
