@@ -80,7 +80,7 @@ function LandingPage() {
             {/* Filter */}
 
             {/* CheckBox */}
-            <CheckBox />
+            <CheckBox list={continents}/>
 
             {/* Search */}
 
