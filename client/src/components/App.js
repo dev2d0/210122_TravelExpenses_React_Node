@@ -8,7 +8,7 @@ import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import NavBar from "./views/NavBar/NavBar";
 import Copyright from "./views/Copyright/Copyright.jsx"
 import UploadTravelPage from "./views/UploadTravelPage/UploadTravelPage.js"
-import DetailTravelPage from "./views/UploadTravelPage/DetailTravelPage.js"
+import DetailTravelPage from "./views/DetailTravelPage/DetailTravelPage.js"
 //null   Anyone Can go inside
 //true   only logged in user can go inside
 //false  logged in user can't go inside
