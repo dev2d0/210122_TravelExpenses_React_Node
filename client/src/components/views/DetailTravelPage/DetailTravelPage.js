@@ -36,13 +36,6 @@ function DetailTravelPage(props) {
                 <Col lg={12} sm={24}>
                     {/* TravelInfo */}
                     <TravelInfo detail={Travel} travelId={travelId} />
-                    <List.Item
-                        actions={[
-                            <Like travel travelId={travelId} userId={localStorage.getItem('userId')} />,
-                            //userId와 userFrom은 본인의 아이디 이므로 로그인 됐을 때 저장된 localStrage 정보의 userId에서 받아올 수 있음.
-                        ]}
-                    >
-                    </List.Item>
                 </Col>
             </Row>
         </div>
