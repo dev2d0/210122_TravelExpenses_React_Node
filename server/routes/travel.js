@@ -92,7 +92,7 @@ router.get('/travels_by_id', (req, res) => {
 
     //travelId를 이용하여 DB에서 traveld와 같은 상품의 정보를 가져온다. 
 
-    Travel.find({ _id: travelId })
+    Travel.find({ _id: {$in: travelId }})
         .populate("writer")
         .exec((err, travel) => {
             if (err) return res.status(400).send(err)
