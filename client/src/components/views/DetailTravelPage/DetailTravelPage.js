@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import TravelImage from './Sections/TravelImage';
 import TravelInfo from './Sections/TravelInfo';
+import Delete from './Sections/Delete';
 import { Row, Col } from 'antd';
 
 function DetailTravelPage(props) {
@@ -37,6 +38,7 @@ function DetailTravelPage(props) {
                     <TravelInfo detail={Travel} travelId={travelId} />
                 </Col>
             </Row>
+            <Delete />
         </div>
     )
 }

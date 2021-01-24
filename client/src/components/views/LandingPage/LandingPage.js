@@ -69,8 +69,11 @@ function LandingPage() {
                 >
                     <Meta
                         title={travel.title}
-                        description={`${travel.price}원`}
+                       // description={`${travel.price}원`}
                     />
+                    <br />
+                    <span>가격 :  {`${travel.price}원`} </span><br />
+                    <span>작성자 : {travel.writer.name} </span><br />
                 </Card>
             </Col>
         )
@@ -128,7 +131,7 @@ function LandingPage() {
     }
 
     return (
-        <div style={{ width: '75%', margin: '3rem auto', minHeight: '770px'}}>
+        <div style={{ width: '75%', margin: '3rem auto', minHeight: '770px' }}>
             <div style={{ textAlign: 'center' }}>
                 <h2>Let's Go Travel <Icon type="rocket" /> </h2>
             </div>
