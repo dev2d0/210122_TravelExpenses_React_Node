@@ -4,16 +4,22 @@ import axios from 'axios'
 function Delete(props) {
     const userTo = props.userTo
     const userFrom = props.userFrom
+    const travelId= props.detail._id
 
-    const deleteHandler = () => {
+    const deleteHandler = (event) => {
         let TravelVariables = {
-            //   userTo: userTo, //팔로우 당할 사람(컨텐츠 업로드 유저)
-            userFrom: userFrom //팔로우 하는 사람(나)
+            userTo: userTo, //팔로우 당할 사람(컨텐츠 업로드 유저)
+           // userFrom: userFrom, //팔로우 하는 사람(나)
+            travelId: travelId
         }
+
+        console.log(userTo)
+        console.log(travelId)
         axios.post('/api/travel/delete', TravelVariables)
             .then(response => {
                 if (response.data.success) {
-
+                    console.log(response.data)
+                    props.history.push('/')//delete가 완료 되면 landingpage로 자동적으로 이동시켜줌
                 } else {
                     alert('Failed to delete')
                 }

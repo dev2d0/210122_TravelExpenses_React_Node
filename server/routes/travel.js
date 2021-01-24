@@ -104,7 +104,7 @@ router.post("/delete", (req, res) => {
 
     console.log(req.body)
 
-    Travel.findOneAndDelete({ "_id" : req.body.travelId, userTo: req.body.userTo, userFrom: req.body.userFrom }) //특정 컨텐츠 아이디에 맞는 정보를 가져오도록 함.
+    Travel.findOneAndDelete({ _id : req.body.travelId, writer: req.body.userTo }) //특정 컨텐츠 아이디에 맞는 정보를 가져오도록 함.
         .exec((err, doc) => {
             if (err) return res.status(400).json({ success: false, err });
             res.status(200).json({ success: true, doc })
