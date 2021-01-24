@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import TravelImage from './Sections/TravelImage';
 import TravelInfo from './Sections/TravelInfo';
-import Like from './Sections/Like';
-import { Row, Col, List } from 'antd';
+import { Row, Col } from 'antd';
 
 function DetailTravelPage(props) {
 
