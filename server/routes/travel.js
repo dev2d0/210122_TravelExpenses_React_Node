@@ -86,6 +86,20 @@ router.post('/travels', (req, res) => {
     }
 })
 
+router.get('/travels_by_id', (req, res) => {
+    let type = req.query.type//query로 요청을 보냈으므로 body가 아니라 query다.
+    let travelId = req.query.id
+
+    //travelId를 이용하여 DB에서 traveld와 같은 상품의 정보를 가져온다. 
+
+    Travel.find({ _id: travelId })
+        .populate("writer")
+        .exec((err, travel) => {
+            if (err) return res.status(400).send(err)
+            return res.status(200).send({ success: true, travel })
+        })
+})
+
 
 module.exports = router;
 
