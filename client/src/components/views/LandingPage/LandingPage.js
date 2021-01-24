@@ -128,7 +128,7 @@ function LandingPage() {
     }
 
     return (
-        <div style={{ width: '75%', margin: '3rem auto' }}>
+        <div style={{ width: '75%', margin: '3rem auto', minHeight: '770px'}}>
             <div style={{ textAlign: 'center' }}>
                 <h2>Let's Go Travel <Icon type="rocket" /> </h2>
             </div>

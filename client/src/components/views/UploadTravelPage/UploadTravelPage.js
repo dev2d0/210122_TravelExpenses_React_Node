@@ -73,7 +73,7 @@ function UploadTravelPage(props) {
 
 
     return (
-        <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
+        <div style={{ maxWidth: '700px', margin: '2rem auto', minHeight: '770px'}}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                 <h2> 여행지 경비 </h2>
                 <h>+버튼을 눌러</h>

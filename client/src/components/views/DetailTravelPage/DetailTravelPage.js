@@ -22,7 +22,7 @@ function DetailTravelPage(props) {
     })
 
     return (
-        <div style={{ width: '100%', padding: '3rem 4rem' }}>
+        <div style={{ width: '100%', padding: '3rem 4rem', minHeight: '770px'}}>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <h1>{Travel.title}</h1>
             </div>
