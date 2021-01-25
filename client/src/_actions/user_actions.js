@@ -54,7 +54,7 @@ export function addToScrap(id) {
         travelId: id
     }
 
-    const request = axios.post(`${USER_SERVER}/addToScrap, body`)
+    const request = axios.post(`${USER_SERVER}/addToScrap`, body)
         .then(response => response.data);
 
     return {

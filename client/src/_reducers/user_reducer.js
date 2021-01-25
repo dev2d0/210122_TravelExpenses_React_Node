@@ -3,7 +3,7 @@ import {
     REGISTER_USER,
     AUTH_USER,
     LOGOUT_USER,
-    ADD_TO_SCRAP
+    ADD_TO_SCRAP,
 } from '../_actions/types';
 
 
