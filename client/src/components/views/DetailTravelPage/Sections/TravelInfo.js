@@ -1,8 +1,16 @@
 import React from 'react'
 import { Button, Descriptions } from 'antd';
 import Like from './Like';
+import { useDispatch } from 'react-redux';
+import { addToScrap } from '../../../../_actions/user_actions';
 
 function TravelInfo(props) {
+
+    const dispatch = useDispatch();
+
+    const clickHandler = () => {
+        dispatch(addToScrap(props.detail._id))
+    }
     return (
         <div>
             <Descriptions title="여행 정보" layout="vertical" bordered>

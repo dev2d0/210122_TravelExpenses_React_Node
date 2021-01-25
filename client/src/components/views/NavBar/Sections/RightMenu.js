@@ -6,7 +6,11 @@ import { USER_SERVER } from '../../../Config';
 import { withRouter } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import Write from '../../../../assets/logo/write.png';
+import Bell from '../../../../assets/logo/bell.png';
 import Pop from './popper.js';
+
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
 function RightMenu(props) {
   const user = useSelector(state => state.user)
@@ -49,6 +53,22 @@ function RightMenu(props) {
         <Menu.Item key="intro">
           <Pop className="menu__Home" />
         </Menu.Item>
+        <SubMenu title={<span>FeedBack</span>}>
+          <MenuItemGroup title="Item 1" paddingBottom="1rem">
+            <Menu.Item key="setting:1">신고</Menu.Item>
+            <Menu.Item key="setting:2"> <a href="https://forms.gle/7ksfRdzD9dGVUA5B7" target="_blank">파드백</a></Menu.Item>
+          </MenuItemGroup>
+        </SubMenu>
+        <SubMenu title={<div> <img
+          src={Bell}
+          className="menu__Icon"
+          alt="FeedBack"
+        /></div>}>
+          <MenuItemGroup title="Item 1" marginBottom="100px">
+            <Menu.Item key="setting:1"><a href="https://forms.gle/oKWCo7gKkoHLxNrLA" target="_blank">신고</a></Menu.Item>
+            <Menu.Item key="setting:2"> <a href="https://forms.gle/7ksfRdzD9dGVUA5B7" target="_blank">파드백</a></Menu.Item>
+          </MenuItemGroup>
+        </SubMenu>
         <Menu.Item key="logout">
           <a onClick={logoutHandler}>Logout</a>
         </Menu.Item>

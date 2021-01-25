@@ -26,6 +26,10 @@ const userSchema = mongoose.Schema({
         type:Number,
         default: 0 
     },
+    scrap : {
+        type: Array,
+        defalt:[]
+    },
     image: String,
     token : {
         type: String,

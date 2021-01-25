@@ -48,8 +48,8 @@ export default function SimplePopover() {
           horizontal: 'center',
         }}
       >
-        <Typography className={classes.typography}>Dev2d0의 게시판 입니다. <br/>회원가입 및 로그인 과정 이후 글쓰기 기능을 이용해 게시물을 작성, 수정, 삭제해 보세요!!<br/>This is Dev2d0's bulletin board.
-<br/>Create, modify, and delete posts using the writing function after signing up and logging in!!</Typography>
+        <Typography className={classes.typography}>여행 정보 공유 웹 서비스 입니다. <br/>여러분이 경험했던 여행 일정과 여행 경비를 사람들과 공유해보세요. <br/>This is a travel information sharing web service.
+<br/>Share your travel itinerary and travel expenses with people.</Typography>
       </Popover>
     </div>
   );
