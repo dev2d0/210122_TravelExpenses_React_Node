@@ -31,7 +31,7 @@ function DetailTravelPage(props) {
 
     const DeleteButton = Writer._id == localStorage.getItem('userId') && <Delete detail={Travel} deleteFunction={deleteFunction} userTo={Writer._id} userFrom={localStorage.getItem('userId')} />
     return (
-        <div style={{ width: '100%', padding: '3rem 4rem', minHeight: '770px' }}>
+        <div style={{ width: '100%', padding: '3rem 4rem', minHeight: '830px' }}>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <h1>{Travel.title}</h1>
             </div>

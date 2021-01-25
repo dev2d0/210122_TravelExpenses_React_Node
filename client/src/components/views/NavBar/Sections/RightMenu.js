@@ -6,6 +6,7 @@ import { USER_SERVER } from '../../../Config';
 import { withRouter } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import Write from '../../../../assets/logo/write.png';
+import Pop from './popper.js';
 
 function RightMenu(props) {
   const user = useSelector(state => state.user)
@@ -23,6 +24,9 @@ function RightMenu(props) {
   if (user.userData && !user.userData.isAuth) {//로그인 안됐을 때
     return (
       <Menu mode={props.mode}>
+        <Menu.Item key="intro">
+          <Pop className="menu__Home" />
+        </Menu.Item>
         <Menu.Item key="mail">
           <a href="/login">Signin</a>
         </Menu.Item>
@@ -41,6 +45,9 @@ function RightMenu(props) {
               className="menu__Icon"
               alt="Upload"
             /></a>
+        </Menu.Item>
+        <Menu.Item key="intro">
+          <Pop className="menu__Home" />
         </Menu.Item>
         <Menu.Item key="logout">
           <a onClick={logoutHandler}>Logout</a>
