@@ -26,6 +26,20 @@
   float: left;
 }
 
+.menu__Heart {
+  padding-bottom: 15px;
+  height: 45px;
+  width: 32px;
+  float: left;
+}
+
+.menu__Bell {
+  padding-bottom: 7px;
+  padding-top: 7px;
+  height: 45px;
+  width: 32px;
+}
+
 .menu__container .ant-menu-item {
   padding: 0px 5px;
 }

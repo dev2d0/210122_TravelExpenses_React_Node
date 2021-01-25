@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Menu } from 'antd';
+import { Menu, Icon, Badge } from 'antd';
 import axios from 'axios';
 import { USER_SERVER } from '../../../Config';
 import { withRouter } from 'react-router-dom';
@@ -50,25 +50,29 @@ function RightMenu(props) {
               alt="Upload"
             /></a>
         </Menu.Item>
-        <Menu.Item key="intro">
-          <Pop className="menu__Home" />
+
+        <Menu.Item key="scrap" style={{ paddingBottom: 3 }}>
+          <Badge count={user.userData && user.userData.scrap.length}>
+            <a href="/user/scrap" className="head-example" style={{ marginRight: -22, color: '#000000' }} >
+              <Icon type="pushpin" style={{ fontSize: 30, marginBottom: 3 }} />
+            </a>
+          </Badge>
         </Menu.Item>
-        <SubMenu title={<span>FeedBack</span>}>
-          <MenuItemGroup title="Item 1" paddingBottom="1rem">
-            <Menu.Item key="setting:1">신고</Menu.Item>
-            <Menu.Item key="setting:2"> <a href="https://forms.gle/7ksfRdzD9dGVUA5B7" target="_blank">파드백</a></Menu.Item>
-          </MenuItemGroup>
+
+        <Menu.Item key="intro">
+          <Pop className="menu__Heart" />
+        </Menu.Item>
+
+        <SubMenu title={
+          <img
+            src={Bell}
+            className="menu__Bell"
+            alt="FeedBack"
+          />}>
+          <Menu.Item key="setting:1"><a href="https://forms.gle/oKWCo7gKkoHLxNrLA" target="_blank">신고</a></Menu.Item>
+          <Menu.Item key="setting:2"> <a href="https://forms.gle/7ksfRdzD9dGVUA5B7" target="_blank">파드백</a></Menu.Item>
         </SubMenu>
-        <SubMenu title={<div> <img
-          src={Bell}
-          className="menu__Icon"
-          alt="FeedBack"
-        /></div>}>
-          <MenuItemGroup title="Item 1" marginBottom="100px">
-            <Menu.Item key="setting:1"><a href="https://forms.gle/oKWCo7gKkoHLxNrLA" target="_blank">신고</a></Menu.Item>
-            <Menu.Item key="setting:2"> <a href="https://forms.gle/7ksfRdzD9dGVUA5B7" target="_blank">파드백</a></Menu.Item>
-          </MenuItemGroup>
-        </SubMenu>
+
         <Menu.Item key="logout">
           <a onClick={logoutHandler}>Logout</a>
         </Menu.Item>

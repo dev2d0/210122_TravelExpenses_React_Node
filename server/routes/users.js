@@ -75,18 +75,17 @@ router.post("/addToScrap", auth, (req, res) => {//auth를 통과하는 순간 re
         (err, userInfo) => {
             //가져온 정보에서 스크랩하려는 여행지가 이미 있는지 확인
             let duplicate = false;
-            uerInfo.scrap.forEach((item) => {
+            userInfo.scrap.forEach((item) => {
                 if (item.id === req.body.travelId) {
                     duplicate = true;
                 }
             })
 
-
-
             //이미 스크랩 되었을 때 이미 데이터 베이스에 존재한다고 정보를 보내줌.
             if (duplicate) {
                 res.status(200).json({ success: false })
             }
+
             //아직 스크랩 되지 않았을 때 
             else {
                 User.findOneAndUpdate(

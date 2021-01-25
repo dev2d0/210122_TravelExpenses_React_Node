@@ -9,6 +9,7 @@ import NavBar from "./views/NavBar/NavBar";
 import Copyright from "./views/Copyright/Copyright.jsx"
 import UploadTravelPage from "./views/UploadTravelPage/UploadTravelPage.js"
 import DetailTravelPage from "./views/DetailTravelPage/DetailTravelPage.js"
+import ScrapPage from "./views/ScrapPage/ScrapPage.js"
 //null   Anyone Can go inside
 //true   only logged in user can go inside
 //false  logged in user can't go inside
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/travel/upload" component={Auth(UploadTravelPage, true)} />
           <Route exact path="/travel/:travelId" component={Auth(DetailTravelPage, null)} />
+          <Route exact path="/user/scrap" component={Auth(ScrapPage, true)} />
         </Switch>
       </div>
       <Copyright />
