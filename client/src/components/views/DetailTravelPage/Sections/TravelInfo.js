@@ -26,7 +26,7 @@ function TravelInfo(props) {
             <br />
             <br />
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button size="large" shape="round" type="danger" onClick>
+                <Button size="large" shape="round" type="danger" onClick={clickHandler}>
                     저장
                 </Button>
             </div>

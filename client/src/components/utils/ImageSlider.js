@@ -15,6 +15,6 @@ function ImageSlider(props) {
             </Carousel>
         </div>
     )
-}
+} 
 
 export default ImageSlider

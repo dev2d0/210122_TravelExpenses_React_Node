@@ -18,6 +18,7 @@ router.get("/auth", auth, (req, res) => {
         lastname: req.user.lastname,
         role: req.user.role,
         image: req.user.image,
+        scrap: req.user.scrap,//스크랩 부분을 추가해주어야 어디서든 redux에서 보임.
     });
 });
 
@@ -80,32 +81,32 @@ router.post("/addToScrap", auth, (req, res) => {//auth를 통과하는 순간 re
                 }
             })
 
-        })
 
-    //이미 스크랩 되었을 때 이미 데이터 베이스에 존재한다고 정보를 보내줌.
-    if (duplicate) {
-        res.status(200).json({ success: false })
-    }
-    //아직 스크랩 되지 않았을 때 
-    else {
-        User.findOneAndUpdate(
-            { _id: req.user._id },
-            {
-                $push: {
-                    scrap: {
-                        id: req.body.travelId,
-                        date: Date.now()
-                    }
-                }
-            },
-            { new: true }, //업데이트 된 정보를 보내줌.
-            (err, userInfo) => {
-                if (err) return res.status(400).json({ success: false, err })
-                res.status(200).send(userInfo.scrap)
+
+            //이미 스크랩 되었을 때 이미 데이터 베이스에 존재한다고 정보를 보내줌.
+            if (duplicate) {
+                res.status(200).json({ success: false })
             }
-        )
-    }
-
+            //아직 스크랩 되지 않았을 때 
+            else {
+                User.findOneAndUpdate(
+                    { _id: req.user._id },
+                    {
+                        $push: {
+                            scrap: {
+                                id: req.body.travelId,
+                                date: Date.now()
+                            }
+                        }
+                    },
+                    { new: true },
+                    (err, userInfo) => {
+                        if (err) return res.status(400).json({ success: false, err })
+                        res.status(200).send(userInfo.scrap)
+                    }
+                )
+            }
+        })
 });
 
 module.exports = router;
