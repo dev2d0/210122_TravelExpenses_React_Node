@@ -88,15 +88,23 @@ router.post('/travels', (req, res) => {
 
 router.get('/travels_by_id', (req, res) => {
     let type = req.query.type//query로 요청을 보냈으므로 body가 아니라 query다.
-    let travelId = req.query.id
+    let travelIds = req.query.id
+
+    if (type === 'array') {//scrapPage에서 요청하는 정보가 여러개일 경우
+        //id=123123123,324234234,324234234 이거를 
+        //travelIds = ['123123123', '324234234', '324234234'] 이런식으로 바꿔주기
+        let ids = req.query.id.split(',')
+        travelIds = ids.map(item => {
+            return item
+        })
+    }
 
     //travelId를 이용하여 DB에서 traveld와 같은 상품의 정보를 가져온다. 
-
-    Travel.find({ _id: {$in: travelId }})
+    Travel.find({ _id: { $in: travelIds } })//$in은 travelIds에 배열 형테로 있으면 하나씩 처리해주기 위함.
         .populate("writer")
         .exec((err, travel) => {
             if (err) return res.status(400).send(err)
-            return res.status(200).send({ success: true, travel })
+            return res.status(200).json({ success: true, travel })
         })
 })
 
@@ -104,7 +112,7 @@ router.post("/delete", (req, res) => {
 
     console.log(req.body)
 
-    Travel.findOneAndDelete({ _id : req.body.travelId, writer: req.body.userTo }) //특정 컨텐츠 아이디에 맞는 정보를 가져오도록 함.
+    Travel.findOneAndDelete({ _id: req.body.travelId, writer: req.body.userTo }) //특정 컨텐츠 아이디에 맞는 정보를 가져오도록 함.
         .exec((err, doc) => {
             if (err) return res.status(400).json({ success: false, err });
             res.status(200).json({ success: true, doc })
