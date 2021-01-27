@@ -28,7 +28,7 @@ function LeftMenu(props) {
       </SubMenu>
 
       <Menu.Item key="scrap" style={{ paddingBottom: 3 }}>
-        <Badge count={user.userData && user.userData.scrap.length}>
+        <Badge count={user.userData && user.userData.scrap && user.userData.scrap.length}>
           <a href="/user/scrap" className="head-example" style={{ marginRight: -22, color: '#000000' }} >
             <Icon type="pushpin" style={{ fontSize: 30, marginBottom: 3 }} />
           </a>

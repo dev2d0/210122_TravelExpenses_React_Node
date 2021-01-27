@@ -11,8 +11,8 @@ function ScrapCardBlock(props) {
     }
 
 
-
-
+console.log(props && props.scrap)
+/*
     const renderItems = () => (
         props.travels && props.travels.map((travel, index) => (
             <tr key={index}>
@@ -32,7 +32,7 @@ function ScrapCardBlock(props) {
             </tr>
         ))
     )
-
+*/
 
     return (
         <div>
@@ -45,10 +45,11 @@ function ScrapCardBlock(props) {
                         <th>Remove from Scrap</th>
                     </tr>
                 </thead>
-
+{/*
                 <tbody>
                     {renderItems()}
                 </tbody>
+*/}
             </table>
         </div>
     )
