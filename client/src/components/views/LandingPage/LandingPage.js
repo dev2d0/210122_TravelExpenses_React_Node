@@ -72,7 +72,7 @@ function LandingPage() {
                        // description={`${travel.price}원`}
                     />
                     <br />
-                    <span>가격 :  {`${travel.price}원`} </span><br />
+                    <span>가격 :  {`${travel.price.toLocaleString()}원`} </span><br />
                     <span>작성자 : {travel.writer.name} </span><br />
                 </Card>
             </Col>

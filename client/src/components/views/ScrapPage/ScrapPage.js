@@ -5,7 +5,7 @@ import ScrapCardBlock from './Sections/ScrapCardBlock.js';
 
 function ScrapPage(props) {
     const dispatch = useDispatch();
-    const [Travels, setTravels] = useState({})
+    const [Travels, setTravels] = useState([])
 
 
     useEffect(() => {
@@ -26,7 +26,7 @@ function ScrapPage(props) {
                         if (response.data.success) {
                             console.log("Hello_3")
                             console.log(response.data)
-                            // setTravel(response.data.travel[0])
+                            setTravels(response.data.travel)
                             //setWriter(response.data.travel[0].writer)
                         } else {
                             alert('상세 정보 가져오기를 실패 했습니다.')

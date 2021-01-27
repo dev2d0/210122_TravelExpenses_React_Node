@@ -11,28 +11,34 @@ function ScrapCardBlock(props) {
     }
 
 
-console.log(props && props.scrap)
-/*
+    console.log(props && props.travels)
+
     const renderItems = () => (
         props.travels && props.travels.map((travel, index) => (
             <tr key={index}>
                 <td>
-                    <img style={{ width: '70px' }} alt="travel"
-                        src={renderCartImage(travel.images)} />
+                    <a href={`/travel/${travel._id}`}>
+                        <img
+                            height='60px'
+                            style={{ width: '70px' }} alt="travel"
+                            src={renderCartImage(travel.images)} />
+                    </a>
                 </td>
-
                 <td>
-                    $ {travel.price}
+                     {travel.title}
+                </td>
+                <td>
+                    ₩{travel.price.toLocaleString()}원
                 </td>
                 <td>
                     <button>
-                        Remove 
+                        Remove
                     </button>
                 </td>
             </tr>
         ))
     )
-*/
+
 
     return (
         <div>
@@ -40,16 +46,16 @@ console.log(props && props.scrap)
                 <thead>
                     <tr>
                         <th>Travel Image</th>
-                 
+                        <th>Travel Title</th>
                         <th>Travel Price</th>
                         <th>Remove from Scrap</th>
                     </tr>
                 </thead>
-{/*
+
                 <tbody>
                     {renderItems()}
                 </tbody>
-*/}
+
             </table>
         </div>
     )
