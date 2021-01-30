@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 import ScrapCardBlock from './Sections/ScrapCardBlock.js';
 
 function ScrapPage(props) {
-    const dispatch = useDispatch();
     const [Travels, setTravels] = useState([])
+    const [Total, setTotal] = useState(0)
 
 
     useEffect(() => {
@@ -27,6 +26,7 @@ function ScrapPage(props) {
                             console.log("Hello_3")
                             console.log(response.data)
                             setTravels(response.data.travel)
+                            { calculateTotal(response.data.travel)}
                             //setWriter(response.data.travel[0].writer)
                         } else {
                             alert('상세 정보 가져오기를 실패 했습니다.')
@@ -36,14 +36,32 @@ function ScrapPage(props) {
         } 
     }, [props.user.userData && props.user.userData.scrap])
     
-   
+    let calculateTotal = (Travels) => {//scrap된 여행들의 총합 구하기
+        let total = 0;
+
+        Travels.map(item => {
+            total += parseInt(item.price, 10)
+        })
+
+        setTotal(total)
+       // setShowTotal(true)
+
+    }
+    var prices = (Total).toLocaleString()//금액에 천단위 콤마를 찍어주도록 정의해준다.
     return (
         <div style={{ width: '85%', margin: '3rem auto' }}>
             <h1>My Scrap</h1>
             <div>
                 <ScrapCardBlock travels={Travels} />
             </div>
+            
+                <div style={{ marginTop: '3rem' }}>
+                    <h2>모든 여행을 떠나기 위해 필요한 돈: ₩{prices}원</h2>
+                </div>
+               
         </div>
+
+        
     )
 }
 

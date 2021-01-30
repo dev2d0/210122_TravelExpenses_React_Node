@@ -62,3 +62,26 @@ export function addToScrap(id) {
         payload: request
     }
 }
+
+export function removeScrapItem(travelId) {
+
+    const request = axios.get(`/api/users/removeFromScrap?id=${travelId}`)
+        .then(response => {
+            //productInfo ,  cart 정보를 조합해서   CartDetail을 만든다. 
+            response.data.cart.forEach(item => {
+                response.data.productInfo.forEach((product, index) => {
+                    if (item.id === product._id) {
+                        response.data.productInfo[index].quantity = item.quantity
+                    }
+
+                })
+            })
+            return response.data;
+        });
+
+    return {
+        type: REMOVE_SCRAP_ITEM,
+        payload: request
+    }
+}
+

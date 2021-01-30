@@ -4,6 +4,7 @@ import {
     AUTH_USER,
     LOGOUT_USER,
     ADD_TO_SCRAP,
+    REMOVE_SCRAP_ITEM,
 } from '../_actions/types';
 
 
@@ -23,6 +24,14 @@ export default function (state = {}, action) {
                 userData: {
                     ...state.userData,
                     scrap: action.payload
+                }
+            }
+        case REMOVE_SCRAP_ITEM:
+            return {
+                ...state, 
+                userData: {
+                    ...state.userData,
+                    scrap: action.payload.cart
                 }
             }
         default:

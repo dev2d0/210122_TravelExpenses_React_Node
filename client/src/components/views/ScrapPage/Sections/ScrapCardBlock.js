@@ -1,8 +1,15 @@
 import React from 'react'
 import "./ScrapCardBlock.css"
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { removeFromScrap } from '../../../../_actions/user_actions';
 
 function ScrapCardBlock(props) {
+    const dispatch = useDispatch();
+
+    const deleteHandler = (travelId) => {
+        dispatch(removeScrapItem(travelId))
+    }
 
     const renderCartImage = (images) => {
         if (images.length > 0) {
@@ -10,20 +17,7 @@ function ScrapCardBlock(props) {
             return `http://localhost:5000/${image}`
         }
     }
-
-    const deleteHandler = (travelId) => {
     
-        axios.get(`/api/users/removeFromCart?id=${travelId}`)
-            .then(response => {
-                if (response.data.success) {
-                   
-                } else {
-                    alert('Failed to delete')
-                }
-            })
-    }
-
-
     console.log(props && props.travels)
 
     const renderItems = () => (
@@ -44,7 +38,7 @@ function ScrapCardBlock(props) {
                     ₩{travel.price.toLocaleString()}원
                 </td>
                 <td>
-                    <button onClick={deleteHandler(travel._id)}>
+                    <button onClick={() => deleteHandler(travel._id)}>
                         Remove
                     </button>
                 </td>
