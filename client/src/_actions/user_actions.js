@@ -4,7 +4,8 @@ import {
     REGISTER_USER,
     AUTH_USER,
     LOGOUT_USER,
-    ADD_TO_SCRAP
+    ADD_TO_SCRAP,
+    REMOVE_SCRAP_ITEM,
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -68,14 +69,8 @@ export function removeScrapItem(travelId) {
     const request = axios.get(`/api/users/removeFromScrap?id=${travelId}`)
         .then(response => {
             //productInfo ,  cart 정보를 조합해서   CartDetail을 만든다. 
-            response.data.cart.forEach(item => {
-                response.data.productInfo.forEach((product, index) => {
-                    if (item.id === product._id) {
-                        response.data.productInfo[index].quantity = item.quantity
-                    }
-
-                })
-            })
+           
+            
             return response.data;
         });
 

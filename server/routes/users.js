@@ -108,4 +108,34 @@ router.post("/addToScrap", auth, (req, res) => {//auth를 통과하는 순간 re
         })
 });
 
+router.get('/removeFromScrap', auth, (req, res) => {
+    //먼저 scrap안에 내가 지우려고 한 상품을 지워주기 
+    User.findOneAndUpdate(
+        { _id: req.user._id },
+        {
+            "$pull"://넣을 때는 push 뺄 때는 pull
+                { "scrap": { "id": req.query.id } }
+        },
+        { new: true },//수정 이후에 new: true 해주면 새로운 정보를 반환하거나 err 반환함.
+        (err, userInfo) => {
+            let scrap = userInfo.scrap;
+            let array = scrap.map(item => {
+                return item.id
+            })
+
+            //travel collection에서  현재 남아있는 상품들의 정보를 가져오기 
+
+            //travelIds = ['5e8961794be6d81ce2b94752', '5e8960d721e2ca1cb3e30de4'] 이런식으로 바꿔주기
+            Travel.find({ _id: { $in: array } })
+                .populate('writer')
+                .exec((err, travelInfo) => {
+                    return res.status(200).json({
+                        travelInfo,
+                        scrap
+                    })
+                })
+        }
+    )
+})
+
 module.exports = router;

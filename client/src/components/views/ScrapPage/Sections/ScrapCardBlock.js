@@ -2,7 +2,7 @@ import React from 'react'
 import "./ScrapCardBlock.css"
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { removeFromScrap } from '../../../../_actions/user_actions';
+import { removeScrapItem } from '../../../../_actions/user_actions';
 
 function ScrapCardBlock(props) {
     const dispatch = useDispatch();
