@@ -10,7 +10,6 @@ import Bell from '../../../../assets/logo/bell.png';
 import Pop from './popper.js';
 
 const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
 
 function RightMenu(props) {
   const user = useSelector(state => state.user)
@@ -49,14 +48,6 @@ function RightMenu(props) {
               className="menu__Icon"
               alt="Upload"
             /></a>
-        </Menu.Item>
-
-        <Menu.Item key="scrap" style={{ paddingBottom: 3 }}>
-          <Badge count={user.userData && user.userData.scrap.length}>
-            <a href="/user/scrap" className="head-example" style={{ marginRight: -22, color: '#000000' }} >
-              <Icon type="pushpin" style={{ fontSize: 30, marginBottom: 3 }} />
-            </a>
-          </Badge>
         </Menu.Item>
 
         <Menu.Item key="intro">

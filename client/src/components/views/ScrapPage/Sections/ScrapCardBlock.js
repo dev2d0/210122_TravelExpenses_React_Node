@@ -1,23 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./ScrapCardBlock.css"
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { removeScrapItem } from '../../../../_actions/user_actions';
 
 function ScrapCardBlock(props) {
-    const dispatch = useDispatch();
-
-    const deleteHandler = (travelId) => {
-        dispatch(removeScrapItem(travelId))
-    }
-
+   
     const renderCartImage = (images) => {
         if (images.length > 0) {
             let image = images[0]
             return `http://localhost:5000/${image}`
         }
     }
-    
+
     console.log(props && props.travels)
 
     const renderItems = () => (
@@ -32,13 +24,13 @@ function ScrapCardBlock(props) {
                     </a>
                 </td>
                 <td>
-                     {travel.title}
+                    {travel.title}
                 </td>
                 <td>
                     ₩{travel.price.toLocaleString()}원
                 </td>
                 <td>
-                    <button onClick={() => deleteHandler(travel._id)}>
+                    <button onClick={() => props.deleteScrap(travel._id)}>
                         Remove
                     </button>
                 </td>

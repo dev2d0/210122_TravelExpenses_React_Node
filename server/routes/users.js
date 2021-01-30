@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require("../models/User");
+const { Travel } = require("../models/Travel");
 
 const { auth } = require("../middleware/auth");
 
@@ -111,7 +112,7 @@ router.post("/addToScrap", auth, (req, res) => {//auth를 통과하는 순간 re
 router.get('/removeFromScrap', auth, (req, res) => {
     //먼저 scrap안에 내가 지우려고 한 상품을 지워주기 
     User.findOneAndUpdate(
-        { _id: req.user._id },
+        { _id: req.user._id },//auth middleware때문에 가능한 처리.
         {
             "$pull"://넣을 때는 push 뺄 때는 pull
                 { "scrap": { "id": req.query.id } }
@@ -123,8 +124,7 @@ router.get('/removeFromScrap', auth, (req, res) => {
                 return item.id
             })
 
-            //travel collection에서  현재 남아있는 상품들의 정보를 가져오기 
-
+            //travel collection에서 삭제하고 현재 남아있는 상품들의 정보를 가져오기 
             //travelIds = ['5e8961794be6d81ce2b94752', '5e8960d721e2ca1cb3e30de4'] 이런식으로 바꿔주기
             Travel.find({ _id: { $in: array } })
                 .populate('writer')

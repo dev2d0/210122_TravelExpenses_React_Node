@@ -31,7 +31,7 @@ export default function (state = {}, action) {
                 ...state, 
                 userData: {
                     ...state.userData,
-                    scrap: action.payload.cart
+                    scrap: action.payload.scrap
                 }
             }
         default:
