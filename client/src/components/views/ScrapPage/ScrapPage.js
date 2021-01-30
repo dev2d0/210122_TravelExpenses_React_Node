@@ -55,6 +55,7 @@ function ScrapPage(props) {
     const deleteHandler = (travelId) => {
         dispatch(removeScrapItem(travelId))
             .then(response => {
+                setTravels(response.payload.travelInfo)
                 if (response.payload.travelInfo <= 0)
                     setShowTotal(false)
                 console.log(response)
@@ -70,12 +71,13 @@ function ScrapPage(props) {
             </div>
             {ShowTotal ?
                 <div style={{ marginTop: '3rem' }}>
-                    <h2>Total Amount: ${Total}</h2>
+                    <h2>스크랩한 모든 여행을 가기 위해 필요한 돈의 총액: ${prices}</h2>
                 </div>
                     :
                     <>
                         <br />
                         <Empty description={false} />
+                        <h5>There are no items scraped.</h5>
                     </>
             }
 
