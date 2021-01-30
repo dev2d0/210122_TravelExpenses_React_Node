@@ -33,10 +33,10 @@ function ScrapPage(props) {
                         }
                     })
             }
-        }
+        } 
     }, [props.user.userData && props.user.userData.scrap])
-    console.log("Hello_4")
-    console.log(props.user.userData && props.user.userData.scrap)
+    
+   
     return (
         <div style={{ width: '85%', margin: '3rem auto' }}>
             <h1>My Scrap</h1>

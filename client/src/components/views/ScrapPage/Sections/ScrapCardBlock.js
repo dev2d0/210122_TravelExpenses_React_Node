@@ -1,5 +1,6 @@
 import React from 'react'
 import "./ScrapCardBlock.css"
+import axios from 'axios';
 
 function ScrapCardBlock(props) {
 
@@ -8,6 +9,18 @@ function ScrapCardBlock(props) {
             let image = images[0]
             return `http://localhost:5000/${image}`
         }
+    }
+
+    const deleteHandler = (travelId) => {
+    
+        axios.get(`/api/users/removeFromCart?id=${travelId}`)
+            .then(response => {
+                if (response.data.success) {
+                   
+                } else {
+                    alert('Failed to delete')
+                }
+            })
     }
 
 
@@ -31,7 +44,7 @@ function ScrapCardBlock(props) {
                     ₩{travel.price.toLocaleString()}원
                 </td>
                 <td>
-                    <button>
+                    <button onClick={deleteHandler(travel._id)}>
                         Remove
                     </button>
                 </td>
