@@ -10,8 +10,6 @@ function ScrapCardBlock(props) {
         }
     }
 
-    console.log(props && props.travels)
-
     const renderItems = () => (
         props.travels && props.travels.map((travel, index) => (
             <tr key={index}>

@@ -47,7 +47,7 @@ function FollowingPage() {
     return (
         <div style={{ width: '75%', margin: '3rem auto', minHeight: '770px' }}>
             <div style={{ textAlign: 'center' }}>
-                <h2>Let's Go Travel with Friends <Icon type="rocket" /> </h2>
+                <h2>Following Travel price <Icon type="rocket" /> </h2>
             </div>
            
             {/* Cards */}

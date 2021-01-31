@@ -26,6 +26,13 @@
   float: left;
 }
 
+.menu_Left_Icon {
+  margin-top: 5px;
+  height: 45px;
+  width: 32px;
+  float: left;
+}
+
 .menu__Heart {
   padding-bottom: 15px;
   height: 45px;

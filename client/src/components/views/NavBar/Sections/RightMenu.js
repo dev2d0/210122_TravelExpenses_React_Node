@@ -28,7 +28,7 @@ function RightMenu(props) {
     return (
       <Menu mode={props.mode}>
         <Menu.Item key="intro">
-          <Pop className="menu__Home" />
+          <Pop className="menu__Heart" />
         </Menu.Item>
         <Menu.Item key="mail">
           <a href="/login">Signin</a>

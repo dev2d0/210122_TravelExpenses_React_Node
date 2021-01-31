@@ -48,8 +48,11 @@ export default function SimplePopover() {
           horizontal: 'center',
         }}
       >
-        <Typography className={classes.typography}>여행 정보 공유 웹 서비스 입니다. <br />여러분이 경험했던 여행 일정과 여행 경비를 사람들과 공유해보세요. <br />This is a travel information sharing web service.
-<br />Share your travel itinerary and travel expenses with people.</Typography>
+        <Typography className={classes.typography}>
+          여행 정보 공유 웹 서비스 입니다. <br />
+          여러분이 경험했던 여행 일정과 여행 경비를 사람들과 공유해보세요. <br />
+          This is a travel information sharing web service.<br />
+          Share your travel itinerary and travel expenses with people.</Typography>
       </Popover>
     </div>
   );

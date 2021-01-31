@@ -15,21 +15,15 @@ function ScrapPage(props) {
     useEffect(() => {
 
         let scrapItems = []
-        console.log("Hello_0")
-        console.log(props.user.userData)
         //리덕스 User state의 Scrap안에 게시글이 들어 있는지 확인
         if (props.user.userData && props.user.userData.scrap) {
-            console.log("Hello_1")
             if (props.user.userData.scrap.length > 0) {
-                console.log("Hello_2")
                 props.user.userData.scrap.forEach(item => {
                     scrapItems.push(item.id)
                 })
                 axios.get(`/api/travel/travels_by_id?id=${scrapItems}&type=array`)
                     .then(response => {
                         if (response.data.success) {
-                            console.log("Hello_3")
-                            console.log(response.data)
                             setTravels(response.data.travel)
                             { calculateTotal(response.data.travel) }
                             //setWriter(response.data.travel[0].writer)
@@ -58,13 +52,12 @@ function ScrapPage(props) {
                 setTravels(response.payload.travelInfo)
                 if (response.payload.travelInfo <= 0)
                     setShowTotal(false)
-                console.log(response)
             })
     }
 
     var prices = (Total).toLocaleString()//금액에 천단위 콤마를 찍어주도록 정의해준다.
     return (
-        <div style={{ width: '85%', margin: '3rem auto' }}>
+        <div style={{ width: '85%', margin: '3rem auto', minHeight: '750px' }}>
             <h1>My Scrap</h1>
             <div>
                 <ScrapCardBlock travels={Travels} deleteScrap={deleteHandler}/>
