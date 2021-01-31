@@ -69,7 +69,6 @@ function LandingPage() {
                 >
                     <Meta
                         title={travel.title}
-                       // description={`${travel.price}원`}
                     />
                     <br />
                     <span>가격 :  {`${travel.price.toLocaleString()}원`} </span><br />

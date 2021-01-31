@@ -11,8 +11,8 @@ function TravelImage(props) {
 
             props.detail.images.map(item => {//props로 받은 image들을 item으로 넣어줌
                 images.push({
-                    original: `http://localhost:5000/${item}`,
-                    thumbnail: `http://localhost:5000/${item}`
+                    original: `https://dev2d0travelexpenses.herokuapp.com/${item}`,
+                    thumbnail: `https://dev2d0travelexpenses.herokuapp.com/${item}`
                 })
             })
             setImages(images)
