@@ -3,7 +3,6 @@ const router = express.Router();
 
 const { Follower } = require("../models/Follower");
 
-const { auth } = require("../middleware/auth");
 
 //=================================
 //             Follow
@@ -16,7 +15,6 @@ router.post("/followNumber", (req, res) => {
         .exec((err, follow) => { //userTo를 구독하는 모든 case가 들어감.
             //userTo를 구독하는 정보가 모두 들어가므로 모든 UserFrom의 정보를 받아올 수 있는 것.
             if (err) return res.status(400).send(err)
-
             res.status(200).json({ success: true, followNumber: follow.length })
             //length가 들어가는 이유는 모든 케이스의 정보를 가져오므로 몇개의 케이스가 있는지 수를 세면 그 수가 팔로우 된 사람의 수랑 같다.
         })

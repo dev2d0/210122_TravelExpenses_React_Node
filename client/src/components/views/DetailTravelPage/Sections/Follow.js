@@ -5,10 +5,34 @@ function Follow(props) {
 
     const userTo = props.userTo
     const userFrom = props.userFrom
-    console.log('userFrom : ',userFrom)
-    console.log('userTo : ',userTo)
+    console.log('userFrom : ', userFrom)
+    console.log('userTo : ', userTo)
     const [FollowNumber, setFollowNumber] = useState(0)
     const [Followed, setFollowed] = useState(false)
+
+    useEffect(() => {
+
+        const followNumberVariables = { userTo: userTo, userFrom: userFrom }
+        axios.post('/api/follow/followNumber', followNumberVariables)
+            .then(response => {
+                if (response.data.success) {
+                    setFollowNumber(response.data.followNumber)
+                    console.log(response.data)
+                } else {
+                    alert('Failed to get followr Number')
+                }
+            })
+
+        axios.post('/api/follow/followed', followNumberVariables)
+            .then(response => {
+                if (response.data.success) {
+                    setFollowed(response.data.followed)
+                    console.log(response.data)
+                } else {
+                    alert('Failed to get Followed Information')
+                }
+            })
+    }, [])
 
     const onFollow = () => {
 
@@ -45,30 +69,7 @@ function Follow(props) {
 
     }
 
-    useEffect(() => {
 
-        const followNumberVariables = { userTo: userTo, userFrom: userFrom }
-        axios.post('/api/follow/followNumber', followNumberVariables)
-            .then(response => {
-                if (response.data.success) {
-                    setFollowNumber(response.data.followNumber)
-                    console.log(response.data)
-                } else {
-                    alert('Failed to get followr Number')
-                }
-            })
-
-        axios.post('/api/follow/followed', followNumberVariables)
-            .then(response => {
-                if (response.data.success) {
-                    setFollowed(response.data.followed)
-                    console.log(response.data)
-                } else {
-                    alert('Failed to get Followed Information')
-                }
-            })
-    }, [])
-    
     return (
         <div>
             <button
