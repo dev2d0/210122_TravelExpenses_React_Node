@@ -17,6 +17,7 @@ function DetailTravelPage(props) {
             .then(response => {
                 if (response.data.success) {
                     setTravel(response.data.travel[0])
+                    console.log(response.data.travel[0])
                     setWriter(response.data.travel[0].writer)
                 } else {
                     alert('상세 정보 가져오기를 실패 했습니다.')

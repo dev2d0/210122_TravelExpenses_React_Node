@@ -21,8 +21,6 @@ function Like(props) {
 
         Axios.post('/api/like/getLikes', variable)
             .then(response => {
-                console.log('getLikes', response.data)
-
                 if (response.data.success) {
                     //얼마나 많은 좋아요를 받았는지 
                     setLikes(response.data.likes.length)

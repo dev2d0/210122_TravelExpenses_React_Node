@@ -20,7 +20,7 @@ function TravelInfo(props) {
         <div>
             <Descriptions title="여행 정보" layout="vertical" bordered>
                 <Descriptions.Item label="여행 경비">{prices}원</Descriptions.Item>
-                <Descriptions.Item label="글쓴이">{props.detail.name}</Descriptions.Item>
+                <Descriptions.Item label="글쓴이">{props.detail.writer && props.detail.writer.name}</Descriptions.Item>
                 <Descriptions.Item label="좋아요"> <Like travel travelId={props.travelId} userId={localStorage.getItem('userId')} /></Descriptions.Item>
                 <Descriptions.Item label="소개">{props.detail.description}</Descriptions.Item>
             </Descriptions>

@@ -5,8 +5,6 @@ function Follow(props) {
 
     const userTo = props.userTo
     const userFrom = props.userFrom
-    console.log('userFrom : ', userFrom)
-    console.log('userTo : ', userTo)
     const [FollowNumber, setFollowNumber] = useState(0)
     const [Followed, setFollowed] = useState(false)
 
@@ -17,7 +15,6 @@ function Follow(props) {
             .then(response => {
                 if (response.data.success) {
                     setFollowNumber(response.data.followNumber)
-                    console.log(response.data)
                 } else {
                     alert('Failed to get followr Number')
                 }
@@ -27,12 +24,11 @@ function Follow(props) {
             .then(response => {
                 if (response.data.success) {
                     setFollowed(response.data.followed)
-                    console.log(response.data)
                 } else {
                     alert('Failed to get Followed Information')
                 }
             })
-    }, [])
+    }, [userTo && userFrom])//userTo와 userFrom이 늦게 로딩 될 수 있으므로 두 정보가 모두 있을 때 실행 할 수 있도록 해줌.
 
     const onFollow = () => {
 
