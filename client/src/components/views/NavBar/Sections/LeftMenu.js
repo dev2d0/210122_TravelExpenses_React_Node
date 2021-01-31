@@ -9,19 +9,25 @@ function LeftMenu(props) {
   const user = useSelector(state => state.user)
   return (
     <Menu mode={props.mode}>
-      <SubMenu title={<span>바로가기</span>}>
-        <MenuItemGroup title="Item 1">
-          <Menu.Item key="setting:1">Option 1</Menu.Item>
-          <Menu.Item key="setting:2">Option 2</Menu.Item>
-        </MenuItemGroup>
-        
-      </SubMenu>
-      <Menu.Item key="mail">
+
+      <Menu.Item key="home">
         <span>
           <a href="/" className="head-example" style={{ marginRight: -22, color: '#000000' }}>
             <Icon type="home" style={{ fontSize: 30, marginBottom: 18 }} />
           </a>
         </span>
+      </Menu.Item>
+
+      <Menu.Item key="Follow">
+        <span>
+          <a href="/following" className="head-example" style={{ marginRight: -22, color: '#000000' }}>
+            <Icon type="usergroup-add" style={{ fontSize: 30, marginBottom: 18 }} />
+          </a>
+        </span>
+      </Menu.Item>
+
+      <Menu.Item key="Follo">
+        <a>Follow</a>
       </Menu.Item>
 
       <Menu.Item key="scrap" style={{ paddingBottom: 3 }}>

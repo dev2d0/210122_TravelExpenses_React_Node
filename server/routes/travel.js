@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const { Travel } = require('../models/Travel')
+const { Follower } = require('../models/Follower')
 
 //=================================
 //             Travel
@@ -117,6 +118,29 @@ router.post("/delete", (req, res) => {
             if (err) return res.status(400).json({ success: false, err });
             res.status(200).json({ success: true, doc })
         })
+});
+
+router.post("/getFollowingTravels", (req, res) => {
+    //userFrom(자신의 아이디)을 거지고 구독하는 사람들userTo을 찾는다.
+
+    Follower.find({ 'userFrom': req.body.userFrom })
+    .exec((err, followers)=> {
+        if(err) return res.status(400).send(err);
+
+        let followedUser = [];//follower의 userTo정보를 followedUser배열에 넣는다.
+
+        followers.map((follower, i)=> {
+            followedUser.push(follower.userTo)
+        })//한 사람의 userFrom에는 여러명의 userTo가 존재할 수 있다.
+
+        //찾은 사람들의(userTo) 컨텐츠를 가지고 온다.
+        Travel.find({ writer: { $in: followedUser }})//한명이 아니므로 req.body.id하면 안됨. 몽고DB가 가지고 있는 $in 메소드 이용
+            .populate('writer')
+            .exec((err, travels) => {
+                if(err) return res.status(400).send(err);
+                res.status(200).json({ success: true, travels })
+            })
+    })
 });
 
 module.exports = router;

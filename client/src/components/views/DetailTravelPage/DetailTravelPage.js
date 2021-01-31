@@ -30,6 +30,7 @@ function DetailTravelPage(props) {
     };
 
     const DeleteButton = Writer._id == localStorage.getItem('userId') && <Delete detail={Travel} deleteFunction={deleteFunction} userTo={Writer._id} userFrom={localStorage.getItem('userId')} />
+    //팔로우한 사람과 팔로우 된 사람이 같으면 안되므로 글쓴이의 id와 나의 id가 같으면 팔로우 버튼이 보이지 않도록 해줌
     return (
         <div style={{ width: '100%', padding: '3rem 4rem', minHeight: '830px' }}>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -43,14 +44,14 @@ function DetailTravelPage(props) {
                 </Col>
                 <Col lg={12} sm={24}>
                     {/* TravelInfo */}
-                    <TravelInfo detail={Travel} travelId={travelId} />
+                    <TravelInfo detail={Travel} writer={Writer} travelId={travelId} />
                 </Col>
             </Row>
             {DeleteButton}
 
-
         </div>
     )
+
 }
 
 export default DetailTravelPage
