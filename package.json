@@ -1,7 +1,7 @@
 {
-  "name": "react-boiler-plate",
+  "name": "dev2d0-travelexpenses",
   "version": "1.0.0",
-  "description": "react boiler plate",
+  "description": "dev2d0-travelexpenses",
   "main": "index.js",
   "engine": {
     "node": "10.16.0",
