@@ -51,8 +51,11 @@ export default function SimplePopover() {
         <Typography className={classes.typography}>
           여행 정보 공유 웹 서비스 입니다. <br />
           여러분이 경험했던 여행 일정과 여행 경비를 사람들과 공유해보세요. <br />
+          좋아요, 팔로잉, 스크랩, 정보 선별기능 등 다양한 서비스를 제공합니다.<br />
           This is a travel information sharing web service.<br />
-          Share your travel itinerary and travel expenses with people.</Typography>
+          Share your travel itinerary and travel expenses with people.<br />
+          We provide various services such as Like function, Following function, Scrap function, and information screening function.
+</Typography>
       </Popover>
     </div>
   );
