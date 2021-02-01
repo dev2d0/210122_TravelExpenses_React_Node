@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { Like } = require("../models/Like");
 
-const { auth } = require("../middleware/auth");
-
 //=================================
 //             Like
 //=================================
