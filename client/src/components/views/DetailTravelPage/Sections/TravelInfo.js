@@ -3,6 +3,7 @@ import { Button, Descriptions } from 'antd';
 import Like from './Like';
 import Follow from './Follow';
 import { useDispatch } from 'react-redux';
+import moment from 'moment';//https://momentjs.com/ 
 import { addToScrap } from '../../../../_actions/user_actions';
 
 function TravelInfo(props) {
@@ -30,7 +31,7 @@ function TravelInfo(props) {
             <Descriptions title="여행 정보" layout="vertical" bordered column={{ xxl: 4, xl: 4, lg: 4, md: 4, sm: 2, xs: 1 }}>
                 <Descriptions.Item label="여행 경비">{prices}원</Descriptions.Item>
                 <Descriptions.Item label="글쓴이">{props.detail.writer && props.detail.writer.name}</Descriptions.Item>
-                <Descriptions.Item label="게시일">{props.detail.writer && props.detail.writer.name}</Descriptions.Item>
+                <Descriptions.Item label="게시일">{moment(props.detail.createdAt).format("YYYY년 M월 D일 h:mm:a")}</Descriptions.Item>
                 <Descriptions.Item label="좋아요"> <Like travel travelId={props.travelId} userId={localStorage.getItem('userId')} /></Descriptions.Item>
                 <Descriptions.Item label="소개">{props.detail.description}</Descriptions.Item>
             </Descriptions>
