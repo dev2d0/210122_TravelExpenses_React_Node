@@ -27,7 +27,12 @@ SeeLive : https://dev2d0travelexpenses.herokuapp.com/
 1. WebFrame 프로젝트에서 제작한 로그인, 회원가입 기능을 이용하여 몽고DB와 연결하며 프로젝트를 시작함.
 2. 게시물 업로드 폼 제작
 3. 전체 게시물을 예쁘게 볼 수 있도록 랜딩 페이지 제작
-4. 게시물을 볼 수 있도록 콘텐츠 디테일 페이지 제작
+4. 랜딩페이지 부가 기능 (CheckBox 제작)
+5. 랜딩페이지 부가 기능 (RadioBox 제작)
+6. 랜딩페이지 부가 기능 (SearchBox 제작)
+7. 특정 게시물을 볼 수 있도록  DetailTravelPage 제작
+8. DetailTravelPage 부가 기능(TravelImage 컴포넌트) 제작
+9. DetailTravelPage 부가 기능(TravelInfo 컴포넌트) 제작
 5. 콘텐츠 디테일 페이지에 추가될 사이드 페이지 제작
 6. 팔로우 기능 제작
 7. 팔로우한 사용자의 게시물만 모아서 볼 수 있도록 팔로잉 페이지 제작
@@ -41,13 +46,15 @@ SeeLive : https://dev2d0travelexpenses.herokuapp.com/
 
 # 필터링
 
-# 콘텐츠 디테일 페이지
+# Travel 디테일 페이지
 
 # 스크랩
 
 # 좋아요
 
 # 팔로우
+
+# 팔로잉 페이지
 
 
 
