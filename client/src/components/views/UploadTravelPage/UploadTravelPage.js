@@ -76,7 +76,7 @@ function UploadTravelPage(props) {
         <div style={{ maxWidth: '700px', margin: '2rem auto', minHeight: '770px'}}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                 <h2> 여행지 경비 </h2>
-                <h>+버튼을 눌러</h>
+                <h>+버튼을 눌러 사진을 업로드 해 주세요. 오른쪽 미리보기 사진을 클릭하면 사진이 삭제됩니다.<br/>모든 값을 채워주세요. 가격은 여행에 썼던 총액을 숫자로 적어주세요 </h>
             </div>
 
             <Form onSubmit={submitHandler}>
@@ -93,7 +93,7 @@ function UploadTravelPage(props) {
                 <TextArea onChange={descriptionChangeHandler} value={Description} />
                 <br />
                 <br />
-                <label>가격($)</label>
+                <label>여행 총액(₩)</label>
                 <Input type="number" onChange={priceChangeHandler} value={Price} />
                 <br />
                 <br />
