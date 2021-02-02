@@ -9,8 +9,10 @@
 }
 
 .menu__logo {
-  width: 150px;
+  width: 6rem;
   float: left;
+  margin-right:3rem;
+  padding-top:0.8rem;
 }
 
 .menu__logo a {
