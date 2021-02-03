@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useSelector } from 'react-redux';
 
 function Follow(props) {
-
+    const user = useSelector(state => state.user)
     const userTo = props.userTo
     const userFrom = props.userFrom
     const [FollowNumber, setFollowNumber] = useState(0)
@@ -65,20 +66,37 @@ function Follow(props) {
 
     }
 
+    if (user.userData && !user.userData.isAuth) {//로그인 안됐을 때
+        return (
+            <div>
+                <a href='/login'>
+                    <button
+                        style={{
+                            backgroundColor: `${Followed ? '#AAAAAA' : '#2f9cf5'}`,
+                            borderRadius: '4px', color: 'white', border: 'none',
+                            padding: '5px 24px', fontWeight: '500', fontSize: '1rem', textTransform: 'uppercase'
+                        }}>
+                        {FollowNumber} {Followed ? '팔로잉' : '팔로우'}
+                    </button>
+                </a>
+            </div>
 
-    return (
-        <div>
-            <button
-                onClick={onFollow}
-                style={{
-                    backgroundColor: `${Followed ? '#AAAAAA' : '#2f9cf5'}`,
-                    borderRadius: '4px', color: 'white', border: 'none',
-                    padding: '5px 24px', fontWeight: '500', fontSize: '1rem', textTransform: 'uppercase'
-                }}>
-                {FollowNumber} {Followed ? '팔로잉' : '팔로우'}
-            </button>
-        </div>
-    )
+        )
+    } else {//로그인 됐을 때
+        return (
+            <div>
+                <button
+                    onClick={onFollow}
+                    style={{
+                        backgroundColor: `${Followed ? '#AAAAAA' : '#2f9cf5'}`,
+                        borderRadius: '4px', color: 'white', border: 'none',
+                        padding: '5px 24px', fontWeight: '500', fontSize: '1rem', textTransform: 'uppercase'
+                    }}>
+                    {FollowNumber} {Followed ? '팔로잉' : '팔로우'}
+                </button>
+            </div>
+        )
+    }
 }
 
 export default Follow

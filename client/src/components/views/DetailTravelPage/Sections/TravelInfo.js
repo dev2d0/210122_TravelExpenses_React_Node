@@ -36,7 +36,7 @@ function TravelInfo(props) {
                 </Descriptions>
                 <br />
                 <br />
-                {FollowButton}
+                    {FollowButton}
                 <br />
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <a href='/login'>

@@ -27,7 +27,7 @@ function App() {
           <Route exact path="/travel/upload" component={Auth(UploadTravelPage, true)} />
           <Route exact path="/travel/:travelId" component={Auth(DetailTravelPage, null)} />
           <Route exact path="/user/scrap" component={Auth(ScrapPage, true)} />
-          <Route exact path="/following" component={Auth(FollowingPage, null)} />
+          <Route exact path="/following" component={Auth(FollowingPage, true)} />
         </Switch>
       </div>
       <Copyright />
