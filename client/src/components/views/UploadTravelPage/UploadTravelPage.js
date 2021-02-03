@@ -63,7 +63,7 @@ function UploadTravelPage(props) {
         Axios.post('/api/travel', body)
             .then(response => {
                 if (response.data.success) {
-                    alert('여행지 업로드에 성공했습니다..')
+                    alert('여행지 업로드에 성공했습니다.')
                     props.history.push('/')//업로드가 완료 되면 landingpage로 자동적으로 이동시켜줌
                 } else {
                     alert('여행지 업로드에 실패 했습니다.')
