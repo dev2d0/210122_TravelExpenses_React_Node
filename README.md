@@ -45,6 +45,7 @@ SeeLive : https://dev2d0travelexpenses.herokuapp.com/
 
 
 # 게시물 업로드 페이지
+<img width="1655" alt="스크린샷 2021-02-05 오전 3 37 25" src="https://user-images.githubusercontent.com/39155520/106939345-7c506980-6763-11eb-9c32-2846d1f49d04.png">
 
 
 # 랜딩 페이지 
