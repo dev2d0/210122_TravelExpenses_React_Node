@@ -64,8 +64,6 @@ SeeLive : https://dev2d0travelexpenses.herokuapp.com/
 
 # 팔로우
 
-# 팔로잉 페이지
-
 
 
 
