@@ -21,8 +21,11 @@ var storage = multer.diskStorage({
 })
 
 var upload = multer({ storage: storage }).single("file")
+
+로컬에서 쓰일 때는 이렇게
 */
 
+//asw s3에 파일을 업로드 할 때는 multerS3이용해주어야 함.
 const storage = multerS3({
     s3: s3,
     bucket: 'dev2d0travelexpenses',
