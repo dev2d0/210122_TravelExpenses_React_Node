@@ -3,7 +3,8 @@ const router = express.Router();
 const multer = require('multer');
 const multerS3 = require('multer-s3');//아마존S3에 multer를 이용해 이미지를 올릴 수 있음.
 const aws = require('aws-sdk');//aws연결
-const s3 = require('../config/s3');
+const devS3 = require('../config/devS3');
+const prodS3 = require('../config/prodS3');
 const { Travel } = require('../models/Travel')
 const { Follower } = require('../models/Follower')
 
@@ -26,6 +27,14 @@ var upload = multer({ storage: storage }).single("file")
 */
 
 //asw s3에 파일을 업로드 할 때는 multerS3이용해주어야 함.
+
+if (process.env.NODE_ENV === 'production') {
+    s3= prodS3
+} else {
+    s3= devS3
+}
+
+
 const storage = multerS3({
     s3: s3,
     bucket: 'dev2d0travelexpenses',
