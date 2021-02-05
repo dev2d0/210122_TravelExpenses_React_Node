@@ -1,12 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const multerS3 = require('multer-s3');//아마존S3에 multer를 이용해 이미지를 올릴 수 있음.
+const aws = require('aws-sdk');//aws연결
+const s3 = require('../config/s3');
 const { Travel } = require('../models/Travel')
 const { Follower } = require('../models/Follower')
 
 //=================================
 //             Travel
 //=================================
+/*
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/')//파일 저장 경로
@@ -17,6 +21,21 @@ var storage = multer.diskStorage({
 })
 
 var upload = multer({ storage: storage }).single("file")
+*/
+
+const storage = multerS3({
+    s3: s3,
+    bucket: 'dev2d0travelexpenses',
+    acl: 'public-read-write',
+    metadata: function (req, file, cb) {
+        cb(null, { fieldName: file.fieldname });
+    },
+    key: function (req, file, cb) {
+        cb(null, Date.now().toString())
+    },
+})
+
+var upload = multer({ storage: storage }).single("file")
 
 router.post('/image', (req, res) => {
     //가져온 이미지를 저장을 해주면 된다.
@@ -24,7 +43,7 @@ router.post('/image', (req, res) => {
         if (err) {//프론트엔드로 정보 전달
             return req.json({ success: false, err })
         }
-        return res.json({ success: true, filePath: res.req.file.path, fileName: res.req.file.filename })
+        return res.json({ success: true, filePath: res.req.file.key, fileName: res.req.file.filename })
     })
 })
 
@@ -124,23 +143,23 @@ router.post("/getFollowingTravels", (req, res) => {
     //userFrom(자신의 아이디)을 거지고 구독하는 사람들userTo을 찾는다.
 
     Follower.find({ 'userFrom': req.body.userFrom })
-    .exec((err, followers)=> {
-        if(err) return res.status(400).send(err);
+        .exec((err, followers) => {
+            if (err) return res.status(400).send(err);
 
-        let followedUser = [];//follower의 userTo정보를 followedUser배열에 넣는다.
+            let followedUser = [];//follower의 userTo정보를 followedUser배열에 넣는다.
 
-        followers.map((follower, i)=> {
-            followedUser.push(follower.userTo)
-        })//한 사람의 userFrom에는 여러명의 userTo가 존재할 수 있다.
+            followers.map((follower, i) => {
+                followedUser.push(follower.userTo)
+            })//한 사람의 userFrom에는 여러명의 userTo가 존재할 수 있다.
 
-        //찾은 사람들의(userTo) 컨텐츠를 가지고 온다.
-        Travel.find({ writer: { $in: followedUser }})//한명이 아니므로 req.body.id하면 안됨. 몽고DB가 가지고 있는 $in 메소드 이용
-            .populate('writer')
-            .exec((err, travels) => {
-                if(err) return res.status(400).send(err);
-                res.status(200).json({ success: true, travels })
-            })
-    })
+            //찾은 사람들의(userTo) 컨텐츠를 가지고 온다.
+            Travel.find({ writer: { $in: followedUser } })//한명이 아니므로 req.body.id하면 안됨. 몽고DB가 가지고 있는 $in 메소드 이용
+                .populate('writer')
+                .exec((err, travels) => {
+                    if (err) return res.status(400).send(err);
+                    res.status(200).json({ success: true, travels })
+                })
+        })
 });
 
 module.exports = router;

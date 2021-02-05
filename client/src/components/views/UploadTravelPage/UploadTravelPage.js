@@ -75,8 +75,8 @@ function UploadTravelPage(props) {
     return (
         <div style={{ maxWidth: '700px', margin: '2rem auto', minHeight: '770px'}}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <h2> 여행지 경비 </h2>
-                <h>+버튼을 눌러 사진을 업로드 해 주세요. 오른쪽 미리보기 사진을 클릭하면 사진이 삭제됩니다.<br/>모든 값을 채워주세요. 여행총액은 여행에 썼던 총액을 숫자로 적어주세요 </h>
+                <h1> 여행지 경비 </h1>
+                <h4>+버튼을 눌러 사진을 업로드 해 주세요. 오른쪽 미리보기 사진을 클릭하면 사진이 삭제됩니다.<br/>모든 값을 채워주세요. 여행총액은 여행에 썼던 총액을 숫자로 적어주세요 </h4>
             </div>
 
             <Form onSubmit={submitHandler}>

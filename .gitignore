@@ -2,8 +2,8 @@
 /build
 
 dev.js
-
-
+aws.json
+s3.js
 
 .DS_Store
 

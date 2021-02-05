@@ -6,7 +6,7 @@ function ScrapCardBlock(props) {
     const renderCartImage = (images) => {
         if (images.length > 0) {
             let image = images[0]
-            return `https://dev2d0travelexpenses.herokuapp.com/${image}`
+            return `https://dev2d0travelexpenses.s3.ap-northeast-2.amazonaws.com/${image}`
         }
     }
 

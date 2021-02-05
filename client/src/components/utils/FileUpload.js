@@ -3,7 +3,6 @@ import Dropzone from 'react-dropzone'
 import { Icon } from 'antd';
 import axios from 'axios';
 
-
 function FileUpload(props) {
 
     const [Images, setImages] = useState([])
@@ -19,8 +18,8 @@ function FileUpload(props) {
         axios.post('/api/travel/image', formData, config)
             .then(response => {
                 if (response.data.success) {
-                    console.log(response.data)
                     setImages([...Images, response.data.filePath])//여러개 들어오면 배열에 여러개 저장 가능
+                    console.log(Images)
                     props.refreshFunction([...Images, response.data.filePath])
                 } else {
                     alert('파일을 저장하는데 실패했습니다.')
@@ -61,7 +60,7 @@ function FileUpload(props) {
                 {Images.map((image, index) => (
                     <div onClick={() => deleteHandler(image)} key={index}>
                         <img style={{ minWidth: '300px', width: '300px', height: '240px' }}
-                            src={`https://dev2d0travelexpenses.herokuapp.com/${image}`}
+                            src={`https://dev2d0travelexpenses.s3.ap-northeast-2.amazonaws.com/${image}`}
                         />
                     </div>
                 ))}
