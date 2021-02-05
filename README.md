@@ -45,22 +45,33 @@ SeeLive : https://dev2d0travelexpenses.herokuapp.com/
 
 
 # 게시물 업로드 페이지
+<img width="1655" alt="스크린샷 2021-02-05 오전 3 37 25" src="https://user-images.githubusercontent.com/39155520/106939345-7c506980-6763-11eb-9c32-2846d1f49d04.png">
 
 
 # 랜딩 페이지 
+<img width="1672" alt="스크린샷 2021-02-03 오전 6 39 10" src="https://user-images.githubusercontent.com/39155520/106939065-1ebc1d00-6763-11eb-96c0-e3cc156252e3.png">
 
 # 필터링
+CheckBox를 이용해 여행지 지역을 선택하여 자신이 원하는 지역만의 여행지를 볼 수 있습니다.
+RadioBox를 이용하여 자신의 경비에 맞는 금액을 선택하여 해당 경비의 여행지 후기를 볼 수 있습니다.
+
 
 # Travel 디테일 페이지
+ <img width="1651" alt="스크린샷 2021-02-03 오전 6 32 04" src="https://user-images.githubusercontent.com/39155520/106938865-db61ae80-6762-11eb-9ec4-428d68c58822.png">
 
 # 스크랩
+마음에 드는 게시물을 스크랩 하여 저장할 수 있습니다.
+
+# 스크랩 페이지
+<img width="1639" alt="스크린샷 2021-02-03 오전 6 36 51" src="https://user-images.githubusercontent.com/39155520/106939015-0ba94d00-6763-11eb-8129-5416a2a2eec7.png">
 
 # 좋아요
+마음에 드는 게시물에 좋아요를 누를 수 있습니다.
 
 # 팔로우
+마음에 드는 유저를 팔로우 할 수 있습니다.
 
 # 팔로잉 페이지
-
-
+팔로우 한 사용자들의 게시물만 따로 볼 수 있는 페이지가 있습니다.
 
 
