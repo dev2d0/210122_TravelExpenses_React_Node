@@ -42,6 +42,7 @@ SeeLive : https://dev2d0travelexpenses.herokuapp.com/
 13. 팔로우 기능 제작
 14. 팔로우한 사용자의 게시물만 모아서 볼 수 있도록 팔로잉 페이지 제작
 15. Scrap한 글을 볼 수 있도록 ScrapPage 제작
+16. Heroku, MongoDB atlas, Amazon S3를 이용하여 배포
 
 
 # 게시물 업로드 페이지
