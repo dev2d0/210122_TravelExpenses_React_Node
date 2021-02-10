@@ -14,6 +14,8 @@ SeeLive : https://dev2d0travelexpenses.herokuapp.com/
 - Node.js
 - MongoDB
 - Redux
+- Amazon S3
+- Heroku
 
 # 주요 기능 
 - 회원가입
