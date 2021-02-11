@@ -61,7 +61,7 @@ function RightMenu(props) {
             alt="FeedBack"
           />}>
           <Menu.Item key="setting:1"><a href="https://forms.gle/oKWCo7gKkoHLxNrLA" target="_blank">신고</a></Menu.Item>
-          <Menu.Item key="setting:2"> <a href="https://forms.gle/7ksfRdzD9dGVUA5B7" target="_blank">파드백</a></Menu.Item>
+          <Menu.Item key="setting:2"> <a href="https://forms.gle/7ksfRdzD9dGVUA5B7" target="_blank">피드백</a></Menu.Item>
         </SubMenu>
 
         <Menu.Item key="logout">
