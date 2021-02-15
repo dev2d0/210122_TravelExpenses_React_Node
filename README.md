@@ -14,6 +14,8 @@ SeeLive : https://dev2d0travelexpenses.herokuapp.com/
 - Node.js
 - MongoDB
 - Redux
+- Express
+- AntDesign
 - Amazon S3
 - Heroku
 
