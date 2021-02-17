@@ -61,7 +61,7 @@ CheckBox를 이용해 여행지 지역을 선택하여 자신이 원하는 지�
 RadioBox를 이용하여 자신의 경비에 맞는 금액을 선택하여 해당 경비의 여행지 후기를 볼 수 있습니다.
 
 
-# Travel 디테일 페이지
+# 디테일 페이지
  <img width="1651" alt="스크린샷 2021-02-03 오전 6 32 04" src="https://user-images.githubusercontent.com/39155520/106938865-db61ae80-6762-11eb-9ec4-428d68c58822.png">
 
 # 스크랩
